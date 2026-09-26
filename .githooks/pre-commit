@@ -1,0 +1,13 @@
+#!/bin/sh
+set -u
+
+for ident in GIT_AUTHOR_IDENT GIT_COMMITTER_IDENT; do
+	email=$(git var "$ident" | sed -n 's/.*<\(.*\)>.*/\1/p')
+	case "$email" in
+	*@users.noreply.github.com) ;;
+	*)
+		echo "pre-commit: $ident email '$email' is not a GitHub noreply address" >&2
+		exit 1
+		;;
+	esac
+done
