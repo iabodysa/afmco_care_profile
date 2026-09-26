@@ -12,7 +12,8 @@ extend_doctype_class = {
 	"HD Ticket": ["afmco_care_profile.afmco_care_profile.hd_ticket.CareHDTicket"],
 }
 
-after_sync = ["afmco_care_profile.afmco_care_profile.install.after_sync"]
+after_sync = ["afmco_care_profile.afmco_care_profile.install.reconcile"]
+after_migrate = ["afmco_care_profile.afmco_care_profile.install.reconcile"]
 
 fixtures = [
 	{

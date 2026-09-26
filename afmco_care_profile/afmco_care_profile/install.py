@@ -20,7 +20,7 @@ def install_line(step, outcome, **fields):
 	print(" | ".join(["afmco_care_profile", step, outcome, *("%s:%s" % item for item in fields.items())]))
 
 
-def after_sync():
+def reconcile():
 	care_project_row()
 	required_rows()
 	close_guard_retire()

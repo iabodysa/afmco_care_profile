@@ -4,9 +4,21 @@ from frappe import _
 from frappe.utils import now_datetime
 
 CLOSING_STATUSES = ("Closed", "Resolved")
+CLOSE_GUARD_FIELDS = (
+	"care_project",
+	"care_involves_payment",
+	"care_close_reason",
+	"care_resolution_confirmed",
+	"care_resolution_confirmed_by",
+	"care_resolution_confirmed_on",
+)
 
 
 def care_close_guard(doc):
+	ticket_meta = frappe.get_meta("HD Ticket")
+	if not all(ticket_meta.has_field(fieldname) for fieldname in CLOSE_GUARD_FIELDS):
+		return
+
 	previous = doc.get_doc_before_save()
 
 	if previous:
@@ -49,7 +61,11 @@ def care_close_guard(doc):
 	closed_by_employee = bool(raised_by) and session_user == raised_by
 
 	money_ticket = bool(doc.care_involves_payment)
-	if doc.ticket_type and not money_ticket:
+	if (
+		doc.ticket_type
+		and not money_ticket
+		and frappe.get_meta("HD Ticket Type").has_field("care_money_category")
+	):
 		money_ticket = bool(frappe.db.get_value("HD Ticket Type", doc.ticket_type, "care_money_category"))
 
 	if money_ticket and closed_by_employee and not doc.care_resolution_confirmed:
