@@ -4,7 +4,7 @@ app_title = "AFMCO Care Profile"
 app_publisher = "AFMCO"
 app_description = "Employee profile fields for the AFMCO Helpdesk portal"
 app_email = "afm@afmcoltd.com"
-app_license = "unlicensed"
+app_license = "MIT"
 
 required_apps = ["helpdesk"]
 
