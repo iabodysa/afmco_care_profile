@@ -1,0 +1,14 @@
+[
+ {
+  "doctype": "HD Form Script",
+  "name": "Care Profile Prefill",
+  "dt": "HD Ticket",
+  "apply_to": "Form",
+  "enabled": 1,
+  "apply_on_new_page": 1,
+  "apply_to_customer_portal": 0,
+  "is_standard": 0,
+  "script": "async function setupForm({ doc, call }) {\n\tconst profile = await call(\"afmco_care_profile.afmco_care_profile.api.profile.care_profile_get\");\n\tfor (const [fieldname, value] of Object.entries(profile || {})) {\n\t\tif (value && !doc[fieldname]) {\n\t\t\tdoc[fieldname] = value;\n\t\t}\n\t}\n\treturn {};\n}\n",
+  "modified": "2026-09-26 00:00:00.000000"
+ }
+]

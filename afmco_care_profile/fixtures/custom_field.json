@@ -1,0 +1,111 @@
+[
+ {
+  "doctype": "Custom Field",
+  "name": "HD Ticket-employee_name",
+  "dt": "HD Ticket",
+  "module": "AFMCO Care Profile",
+  "fieldname": "employee_name",
+  "label": "Employee Name",
+  "fieldtype": "Data",
+  "insert_after": "raised_by",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "HD Ticket-iqama_number",
+  "dt": "HD Ticket",
+  "module": "AFMCO Care Profile",
+  "fieldname": "iqama_number",
+  "label": "National ID",
+  "fieldtype": "Data",
+  "insert_after": "employee_name",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "HD Ticket-phone_number",
+  "dt": "HD Ticket",
+  "module": "AFMCO Care Profile",
+  "fieldname": "phone_number",
+  "label": "Mobile Number",
+  "fieldtype": "Data",
+  "insert_after": "iqama_number",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000",
+  "options": "Phone"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "HD Ticket-city",
+  "dt": "HD Ticket",
+  "module": "AFMCO Care Profile",
+  "fieldname": "city",
+  "label": "City",
+  "fieldtype": "Data",
+  "insert_after": "phone_number",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "HD Ticket-working_id",
+  "dt": "HD Ticket",
+  "module": "AFMCO Care Profile",
+  "fieldname": "working_id",
+  "label": "Employee ID",
+  "fieldtype": "Data",
+  "insert_after": "city",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "Contact-employee_name",
+  "dt": "Contact",
+  "module": "AFMCO Care Profile",
+  "fieldname": "employee_name",
+  "label": "Employee Name",
+  "fieldtype": "Data",
+  "insert_after": "mobile_no",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "Contact-iqama_number",
+  "dt": "Contact",
+  "module": "AFMCO Care Profile",
+  "fieldname": "iqama_number",
+  "label": "National ID",
+  "fieldtype": "Data",
+  "insert_after": "employee_name",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "Contact-city",
+  "dt": "Contact",
+  "module": "AFMCO Care Profile",
+  "fieldname": "city",
+  "label": "City",
+  "fieldtype": "Data",
+  "insert_after": "iqama_number",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "Contact-working_id",
+  "dt": "Contact",
+  "module": "AFMCO Care Profile",
+  "fieldname": "working_id",
+  "label": "Employee ID",
+  "fieldtype": "Data",
+  "insert_after": "city",
+  "is_system_generated": 0,
+  "modified": "2026-09-26 00:00:00.000000"
+ }
+]
