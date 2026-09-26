@@ -101,9 +101,3 @@ def care_close_guard(doc):
                     "This ticket involves a payment. It closes only after the employee confirms the resolution by closing it from the portal, or by the care team with a written Close Reason."
                 )
             )
-        if not (doc.care_close_reason or "").strip():
-            frappe.throw(
-                _(
-                    "Write the reason in Close Reason to close this payment ticket without the employee's confirmation."
-                )
-            )
