@@ -4,6 +4,8 @@ import hashlib
 import frappe
 from helpdesk.consts import DEFAULT_TICKET_TEMPLATE
 
+from afmco_care_profile.afmco_care_profile.profile import PROFILE_REQUIRED
+
 CARE_PROJECT_ROW = {"fieldname": "care_project", "required": 0, "hide_from_customer": 1}
 CLOSE_GUARD = "Care Close Guard"
 CLOSE_GUARD_IDENTITY = {
@@ -20,6 +22,7 @@ def install_line(step, outcome, **fields):
 
 def after_sync():
 	care_project_row()
+	required_rows()
 	close_guard_retire()
 
 
@@ -38,6 +41,30 @@ def care_project_row():
 		install_line("care_project_row", "refused", reason=" ".join(str(error).split()))
 		return
 	install_line("care_project_row", "added", template=template.name)
+
+
+def required_rows():
+	template = frappe.get_doc("HD Ticket Template", DEFAULT_TICKET_TEMPLATE)
+	rows = [row for row in template.fields if row.fieldname in PROFILE_REQUIRED]
+	absent = sorted(set(PROFILE_REQUIRED) - {row.fieldname for row in rows})
+	optional = [row for row in rows if not row.required]
+	if not optional:
+		install_line("required_rows", "present", template=template.name, absent=",".join(absent) or "-")
+		return
+	for row in optional:
+		row.required = 1
+	try:
+		template.save()
+	except frappe.ValidationError as error:
+		install_line("required_rows", "refused", reason=" ".join(str(error).split()))
+		return
+	install_line(
+		"required_rows",
+		"set",
+		template=template.name,
+		fields=",".join(row.fieldname for row in optional),
+		absent=",".join(absent) or "-",
+	)
 
 
 def close_guard_retire():
