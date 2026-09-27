@@ -21,6 +21,10 @@ class CareHDTicket:
         care_priority_guard(self)
         care_close_guard(self)
 
+    def on_communication_update(self, c):
+        self.flags.care_communication_update = True
+        super().on_communication_update(c)
+
     def after_insert(self):
         super().after_insert()
         care_profile_sync(self)

@@ -18,7 +18,9 @@ def care_priority_guard(doc):
     previous = doc.get_doc_before_save()
     already_chosen = bool(previous and previous.get(PRIORITY_CHOSEN))
 
-    if not (getattr(frappe.local, "request", None) and care_agent_session()):
+    if doc.flags.care_communication_update or not (
+        getattr(frappe.local, "request", None) and care_agent_session()
+    ):
         doc.set(PRIORITY_CHOSEN, int(already_chosen))
         return
 
