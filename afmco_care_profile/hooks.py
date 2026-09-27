@@ -32,6 +32,7 @@ fixtures = [
                     "Contact-iqama_number",
                     "Contact-city",
                     "Contact-working_id",
+                    "HD Ticket-care_priority_chosen",
                 ],
             ]
         ],

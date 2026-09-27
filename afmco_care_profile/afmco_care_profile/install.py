@@ -7,6 +7,11 @@ from helpdesk.consts import DEFAULT_TICKET_TEMPLATE
 from afmco_care_profile.afmco_care_profile.profile import PROFILE_REQUIRED
 
 CARE_PROJECT_ROW = {"fieldname": "care_project", "required": 0, "hide_from_customer": 1}
+CARE_PRIORITY_ROW = {
+    "fieldname": "care_priority_chosen",
+    "required": 0,
+    "hide_from_customer": 1,
+}
 CLOSE_GUARD = "Care Close Guard"
 CLOSE_GUARD_IDENTITY = {
     "script_type": "DocType Event",
@@ -30,30 +35,33 @@ def install_line(step, outcome, **fields):
 
 
 def reconcile():
-    care_project_row()
+    agent_row(CARE_PROJECT_ROW)
+    agent_row(CARE_PRIORITY_ROW)
     required_rows()
     close_guard_retire()
 
 
-def care_project_row():
+def agent_row(agent_field):
+    fieldname = agent_field["fieldname"]
+    step = "%s_row" % fieldname
     template = frappe.get_doc("HD Ticket Template", DEFAULT_TICKET_TEMPLATE)
-    if any(row.fieldname == CARE_PROJECT_ROW["fieldname"] for row in template.fields):
-        install_line("care_project_row", "present", template=template.name)
+    if any(row.fieldname == fieldname for row in template.fields):
+        install_line(step, "present", template=template.name)
         return
-    if not template.custom_field_exists(CARE_PROJECT_ROW["fieldname"]):
+    if not template.custom_field_exists(fieldname):
         install_line(
-            "care_project_row",
+            step,
             "refused",
-            reason="Custom Field HD Ticket-care_project absent",
+            reason="Custom Field HD Ticket-%s absent" % fieldname,
         )
         return
-    template.append("fields", CARE_PROJECT_ROW)
+    template.append("fields", agent_field)
     try:
         template.save()
     except frappe.ValidationError as error:
-        install_line("care_project_row", "refused", reason=" ".join(str(error).split()))
+        install_line(step, "refused", reason=" ".join(str(error).split()))
         return
-    install_line("care_project_row", "added", template=template.name)
+    install_line(step, "added", template=template.name)
 
 
 def required_rows():

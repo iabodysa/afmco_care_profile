@@ -107,5 +107,19 @@
   "insert_after": "city",
   "is_system_generated": 0,
   "modified": "2026-09-26 00:00:00.000000"
+ },
+ {
+  "doctype": "Custom Field",
+  "name": "HD Ticket-care_priority_chosen",
+  "dt": "HD Ticket",
+  "module": "AFMCO Care Profile",
+  "fieldname": "care_priority_chosen",
+  "label": "Priority Confirmed",
+  "fieldtype": "Check",
+  "insert_after": "priority",
+  "default": "0",
+  "no_copy": 1,
+  "is_system_generated": 0,
+  "modified": "2026-09-27 00:00:00.000000"
  }
 ]

@@ -3,6 +3,8 @@ import frappe
 from frappe import _
 from frappe.utils import now_datetime
 
+from afmco_care_profile.afmco_care_profile.agent import care_agent_session
+
 CLOSING_STATUSES = ("Closed", "Resolved")
 CLOSE_GUARD_FIELDS = (
     "care_project",
@@ -39,12 +41,7 @@ def care_close_guard(doc):
         not previous or previous.status not in CLOSING_STATUSES
     )
     session_is_agent = bool(
-        ((not previous and raised_by) or entering_close)
-        and frappe.db.exists(
-            "Has Role",
-            {"parent": frappe.session.user, "parenttype": "User", "role": "Agent"},
-        )
-        and frappe.db.exists("HD Agent", {"user": frappe.session.user, "is_active": 1})
+        ((not previous and raised_by) or entering_close) and care_agent_session()
     )
 
     if (
