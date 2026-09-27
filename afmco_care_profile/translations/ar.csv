@@ -1,6 +1,6 @@
 "Employee Name","اسم الموظف"
 "National ID","رقم الهوية"
-"Employee ID","الرقم الوظيفي"
+"Job Number","الرقم الوظيفي"
 "Enter {0} before you submit the ticket.","أدخل {0} قبل إرسال التذكرة."
 "{0} must be 10 digits starting with 1 or 2.","يجب أن يكون {0} عشرة أرقام يبدأ بالرقم 1 أو 2."
 "{0} must be 10 digits starting with 05.","يجب أن يكون {0} عشرة أرقام يبدأ بـ 05."
