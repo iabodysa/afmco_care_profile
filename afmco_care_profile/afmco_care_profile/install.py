@@ -14,6 +14,8 @@ CLOSE_GUARD_IDENTITY = {
 	"doctype_event": "Before Save",
 }
 CLOSE_GUARD_SHA256 = "0eab77af59050f5a2833e44bd223c414a2c8e10a90781d146f13826e549f7b4d"
+MY_WORKSPACES_LABEL = "My Workspaces"
+MY_WORKSPACES_LOGO = "/assets/afmco_care_profile/images/desktop-icon-my-workspaces.svg"
 
 
 def install_line(step, outcome, **fields):
@@ -24,6 +26,25 @@ def reconcile():
 	care_project_row()
 	required_rows()
 	close_guard_retire()
+	my_workspaces_logo()
+
+
+def my_workspaces_logo():
+	if not frappe.db.exists("DocType", "Desktop Icon"):
+		install_line("my_workspaces_logo", "absent", doctype="Desktop Icon")
+		return
+	icon = frappe.db.get_value(
+		"Desktop Icon", {"label": MY_WORKSPACES_LABEL}, ["name", "logo_url"], as_dict=True
+	)
+	if not icon:
+		install_line("my_workspaces_logo", "absent", label=MY_WORKSPACES_LABEL)
+		return
+	if icon.logo_url:
+		install_line("my_workspaces_logo", "present", logo_url=icon.logo_url)
+		return
+	frappe.db.set_value("Desktop Icon", icon.name, "logo_url", MY_WORKSPACES_LOGO, update_modified=False)
+	frappe.clear_cache()
+	install_line("my_workspaces_logo", "filled", logo_url=MY_WORKSPACES_LOGO)
 
 
 def care_project_row():
