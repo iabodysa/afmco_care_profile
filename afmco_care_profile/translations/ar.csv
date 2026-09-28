@@ -15,4 +15,5 @@
 "This ticket involves a payment. It closes only after the employee confirms the resolution by closing it from the portal, or by the care team with a written Close Reason.","هذه التذكرة فيها مبلغ مالي. لا تُغلق إلا بعد أن يؤكد الموظف حل مشكلته بإغلاقها من البوابة، أو يغلقها فريق الرعاية مع كتابة سبب الإغلاق."
 "Priority Confirmed","تأكيد الأولوية"
 "Choose the ticket priority, or confirm it in the Priority Confirmed field, before you save this ticket.","اختر أولوية التذكرة، أو أكّدها من حقل تأكيد الأولوية، قبل حفظ التذكرة."
+"Care","الرعاية"
 jane@example.com,adil@afmco.sa

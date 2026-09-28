@@ -1,6 +1,6 @@
 # Copyright (c) 2026, AFMCO and contributors
 app_name = "afmco_care_profile"
-app_title = "AFMCO Care Profile"
+app_title = "Care"
 app_publisher = "AFMCO"
 app_description = "Employee profile fields for the AFMCO Helpdesk portal"
 app_email = "afm@afmcoltd.com"

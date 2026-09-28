@@ -5,6 +5,7 @@ import frappe
 from helpdesk.consts import DEFAULT_TICKET_TEMPLATE
 
 from afmco_care_profile.afmco_care_profile.profile import PROFILE_REQUIRED
+from afmco_care_profile.hooks import app_name, app_title
 
 CARE_PROJECT_ROW = {"fieldname": "care_project", "required": 0, "hide_from_customer": 1}
 CARE_PRIORITY_ROW = {
@@ -21,6 +22,7 @@ CLOSE_GUARD_IDENTITY = {
 CLOSE_GUARD_SHA256 = "0eab77af59050f5a2833e44bd223c414a2c8e10a90781d146f13826e549f7b4d"
 MY_WORKSPACES_LABEL = "My Workspaces"
 MY_WORKSPACES_LOGO = "/assets/afmco_care_profile/images/desktop-icon-my-workspaces.svg"
+APP_ICON_OLD_LABEL = "AFMCO Care Profile"
 
 
 def install_line(step, outcome, **fields):
@@ -42,6 +44,43 @@ def reconcile():
     required_rows()
     close_guard_retire()
     my_workspaces_logo()
+    app_icon_label()
+
+
+def app_icon_label():
+    if not frappe.db.exists("DocType", "Desktop Icon"):
+        install_line("app_icon_label", "absent", doctype="Desktop Icon")
+        return
+    old = frappe.db.get_value(
+        "Desktop Icon", APP_ICON_OLD_LABEL, ["icon_type", "app"], as_dict=True
+    )
+    current = frappe.db.exists("Desktop Icon", app_title)
+    if not old:
+        install_line(
+            "app_icon_label", "present" if current else "absent", label=app_title
+        )
+        return
+    if current:
+        install_line(
+            "app_icon_label",
+            "refused",
+            reason="both labels present",
+            old=APP_ICON_OLD_LABEL,
+            new=app_title,
+        )
+        return
+    if old.icon_type != "App" or old.app != app_name:
+        install_line(
+            "app_icon_label",
+            "refused",
+            reason="identity differs",
+            icon_type=old.icon_type,
+            app=old.app,
+        )
+        return
+    frappe.rename_doc("Desktop Icon", APP_ICON_OLD_LABEL, app_title, show_alert=False)
+    frappe.clear_cache()
+    install_line("app_icon_label", "renamed", old=APP_ICON_OLD_LABEL, new=app_title)
 
 
 def my_workspaces_logo():
