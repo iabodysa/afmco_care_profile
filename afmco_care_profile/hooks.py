@@ -8,6 +8,8 @@ app_license = "unlicensed"
 
 required_apps = ["helpdesk"]
 
+web_include_css = "/assets/afmco_care_profile/css/login.css"
+
 extend_doctype_class = {
 	"HD Ticket": ["afmco_care_profile.afmco_care_profile.hd_ticket.CareHDTicket"],
 }

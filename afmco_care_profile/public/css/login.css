@@ -1,0 +1,23 @@
+@import url("/assets/afmco/css/portal-fonts.css");
+body[data-path="login"] { --lg-accent: #7D42FB; --lg-hover: #6A38D5; --lg-on-accent: #FFFFFF; --lg-ink: #000000; --lg-link: #7D42FB; --lg-line: #D8C6FE; --lg-ring: #EFE8FF;
+  font-family: Montserrat, Tajawal, "Noto Sans Arabic", -apple-system, "Segoe UI", Arial, sans-serif; background: #000000; }
+body[data-path="login"] .page-content-wrapper { min-height: 100vh; min-height: 100svh; display: flex; align-items: center;
+  background: linear-gradient(160deg, rgba(237,247,255,.18) 0%, rgba(125,66,251,.30) 45%, rgba(0,0,0,.62) 100%), url("/assets/afmco_care_profile/images/care-login-bg.webp") center / cover no-repeat, #000000; }
+body[data-path="login"] .page-content-wrapper > main.container { padding-block: 48px; }
+body[data-path="login"] .login-content.page-card { background: #F8F5EE; border: 0; border-radius: 18px; overflow: hidden; max-width: 420px; margin-inline: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,.42), 0 0 0 1px rgba(255,255,255,.12); padding: 0 32px 28px !important; }
+body[data-path="login"] .login-content.page-card::before { display: block; box-sizing: border-box; margin: 0 -32px 24px; background-color: #7D42FB; background-repeat: no-repeat; content: "AFMCO Care  \00B7   رعاية الفريق"; direction: ltr; unicode-bidi: isolate; white-space: pre; text-align: center; padding: 108px 16px 22px; font-size: 14px; font-weight: 600; line-height: 20px; letter-spacing: 0; color: rgba(255,255,255,.94); background-image: url("/assets/afmco/images/portal/afmco-logo-full-white.svg"); background-position: center 24px; background-size: auto 72px; }
+body[data-path="login"] .page-card-head .app-logo { display: none; }
+body[data-path="login"] .page-card-head h4 { color: var(--lg-ink); font-weight: 700; }
+body[data-path="login"] .login-content .form-control { background: #FFFFFF; border: 1px solid var(--lg-line); }
+body[data-path="login"] .login-content .form-control:focus { border-color: var(--lg-accent); box-shadow: 0 0 0 3px var(--lg-ring); }
+body[data-path="login"] .btn-login:not(.btn-login-option), body[data-path="login"] .btn-primary { background: var(--lg-accent) !important; border-color: var(--lg-accent) !important; color: var(--lg-on-accent) !important; font-weight: 600; }
+body[data-path="login"] .btn-login:not(.btn-login-option):hover, body[data-path="login"] .btn-primary:hover { background: var(--lg-hover) !important; border-color: var(--lg-hover) !important; }
+body[data-path="login"] .btn-login:focus-visible, body[data-path="login"] .btn-primary:focus-visible { outline: 3px solid var(--lg-ring); outline-offset: 2px; }
+body[data-path="login"] .page-card a:not(.btn), body[data-path="login"] .forgot-password-message a { color: var(--lg-link); text-decoration-color: var(--lg-line); }
+@media (max-width: 576px) {
+  body[data-path="login"] .page-content-wrapper > main.container { padding: 32px 16px; }
+  body[data-path="login"] .for-login { margin-inline: 0; }
+  body[data-path="login"] .login-content.page-card { padding: 0 20px 22px !important; margin-inline: 0; width: auto; max-width: none; min-height: 0 !important; height: auto; }
+  body[data-path="login"] .login-content.page-card::before { margin: 0 -20px 18px; padding: 94px 12px 18px; font-size: 13px; background-position: center 22px; background-size: auto 60px; }
+}
