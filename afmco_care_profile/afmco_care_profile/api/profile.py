@@ -52,7 +52,8 @@ def care_profile_set(
             PROFILE_PHONE: phone_number,
             "city": city,
             "working_id": working_id,
-        }
+        },
+        _("Enter {0} before you save your details."),
     )
     profile_apply(frappe.get_doc("Contact", contact), values)
     return care_profile_get()

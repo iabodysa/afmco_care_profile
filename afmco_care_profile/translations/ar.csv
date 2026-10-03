@@ -2,6 +2,7 @@
 "National ID","رقم الهوية"
 "Job Number","الرقم الوظيفي"
 "Enter {0} before you submit the ticket.","أدخل {0} قبل إرسال التذكرة."
+"Enter {0} before you save your details.","أدخل {0} قبل حفظ بياناتك."
 "{0} must be 10 digits starting with 1 or 2.","يجب أن يكون {0} عشرة أرقام يبدأ بالرقم 1 أو 2."
 "{0} must be 10 digits starting with 05.","يجب أن يكون {0} عشرة أرقام يبدأ بـ 05."
 "Customer","الموظف"
