@@ -1,0 +1,48 @@
+{% extends "templates/base.html" %}
+
+{% block title %}{{ _("My complaints") }} · AFMCO{% endblock %}
+
+{% block head_include %}{{ super() }}<link rel="stylesheet" href="/assets/afmco_care_profile/css/care.css">{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="ch">
+	{% include "afmco_care_profile/templates/includes/care_bar.html" %}
+
+	<main class="ch-main ch-main--app">
+		<section class="ch-card ch-app" aria-labelledby="ch-app-title">
+			<div class="ch-card-head">
+				<p class="ch-hello">{{ _("Hello, {0}").format(first_name) | e }}</p>
+				<h1 id="ch-app-title">{{ _("Employee care") }}</h1>
+			</div>
+			<div class="ch-card-body">
+				<a class="ch-btn ch-btn--big" href="/helpdesk/my-tickets/new">
+					<span class="ch-plus" aria-hidden="true">+</span>
+					{{ _("File a complaint") }}
+				</a>
+				<p class="ch-note ch-help">{{ _("Write what happened and where, then send it. The care team replies on your complaint, and you follow it from this page.") }}</p>
+
+				<h2 class="ch-steps-title">{{ _("My complaints") }}</h2>
+				{% if tickets %}
+				<ul class="ch-tickets">
+					{% for ticket in tickets %}
+					<li>
+						<a href="/helpdesk/my-tickets/{{ ticket.name }}">
+							<span class="ch-t-subject">{{ ticket.subject | e }}</span>
+							<span class="ch-t-meta">#{{ ticket.name }} · {{ ticket.date }}</span>
+							<span class="ch-status ch-status--{{ (ticket.status_category or 'open') | lower }}">{{ _(ticket.status, context="Care complaint status") }}</span>
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+				{% else %}
+				<p class="ch-empty">{{ _("You have not filed a complaint yet.") }}</p>
+				{% endif %}
+			</div>
+		</section>
+	</main>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

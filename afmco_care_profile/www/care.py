@@ -5,13 +5,14 @@ import frappe
 from frappe import _
 from frappe.utils import get_fullname
 
+from afmco_care_profile.afmco_care_profile.website import set_language_switch
+
 no_cache = 1
 
 
 def get_context(context):
-	lang = "ar" if (frappe.local.lang or "").startswith("ar") else "en"
-	switch_lang = "en" if lang == "ar" else "ar"
-	login_query = {"redirect-to": "/helpdesk/home"}
+	lang = set_language_switch(context)
+	login_query = {"redirect-to": "/complaints"}
 	if frappe.form_dict._lang:
 		login_query["_lang"] = lang
 
@@ -20,5 +21,3 @@ def get_context(context):
 	context.is_guest = frappe.session.user == "Guest"
 	context.full_name = "" if context.is_guest else get_fullname()
 	context.login_url = "/login?" + urlencode(login_query, safe="/")
-	context.switch_lang = switch_lang
-	context.switch_label = frappe.db.get_value("Language", switch_lang, "language_name") or switch_lang

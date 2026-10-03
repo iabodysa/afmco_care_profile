@@ -225,3 +225,62 @@ body.care-home {
 	.ch-card { animation: none; }
 	.ch-btn { transition: none; }
 }
+
+.ch-main--app { justify-content: flex-start; padding-top: 8px; }
+.ch-app { width: 100%; max-width: 560px; margin-inline: auto; }
+.ch-app .ch-card-head h1 { margin: 0; color: #FFFFFF; font-size: 24px; font-weight: 800; line-height: 1.3; }
+.ch-hello { margin: 0 0 2px; color: rgba(255,255,255,.88); font-size: 15px; }
+
+.ch-btn--big { min-height: 64px; border-radius: 14px; font-size: 19px; box-shadow: 0 10px 24px rgba(125,66,251,.32); }
+.ch-plus {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	background: #FFFFFF;
+	color: var(--ch-violet);
+	font-family: Montserrat, Arial, sans-serif;
+	font-size: 24px;
+	font-weight: 800;
+	line-height: 1;
+	flex: none;
+}
+.ch-help { margin: 14px 0 0; font-size: 14px; }
+
+.ch-tickets { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ch-tickets a {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	align-items: center;
+	gap: 4px 12px;
+	padding: 14px 16px;
+	border: 1px solid var(--ch-line);
+	border-radius: 12px;
+	background: #FFFFFF;
+	color: var(--ch-ink);
+	text-decoration: none;
+}
+.ch-tickets a:hover { border-color: var(--ch-violet); color: var(--ch-ink); text-decoration: none; }
+.ch-tickets a:focus-visible { outline: 3px solid var(--ch-line); outline-offset: 2px; }
+.ch-t-subject { grid-column: 1; font-size: 15px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
+.ch-t-meta { grid-column: 1; grid-row: 2; color: var(--ch-muted); font-size: 13px; }
+.ch-status {
+	grid-column: 2;
+	grid-row: 1 / span 2;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: var(--ch-ring);
+	color: var(--ch-violet-deep);
+	font-size: 12px;
+	font-weight: 700;
+	white-space: nowrap;
+}
+.ch-status--paused { background: #FFF3D6; color: #8A5A00; }
+.ch-status--resolved { background: #E3F5EA; color: #1E6B3A; }
+.ch-empty { margin: 0; padding: 18px; border: 1px dashed var(--ch-line); border-radius: 12px; color: var(--ch-muted); font-size: 14px; text-align: center; }
+
+@media (min-width: 900px) {
+	.ch-main.ch-main--app { flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 16px 32px 64px; }
+}

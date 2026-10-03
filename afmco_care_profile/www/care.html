@@ -2,14 +2,13 @@
 
 {% block title %}{{ _("Care") }} · AFMCO{% endblock %}
 
+{% block head_include %}{{ super() }}<link rel="stylesheet" href="/assets/afmco_care_profile/css/care.css">{% endblock %}
+
 {% block navbar %}{% endblock %}
 
 {% block content %}
 <div class="ch">
-	<header class="ch-bar">
-		<img class="ch-logo" src="/assets/afmco/images/portal/afmco-logo-full-white.svg" alt="AFMCO" width="93" height="40">
-		<a class="ch-lang" href="?_lang={{ switch_lang }}" hreflang="{{ switch_lang }}" lang="{{ switch_lang }}">{{ switch_label }}</a>
-	</header>
+	{% include "afmco_care_profile/templates/includes/care_bar.html" %}
 
 	<main class="ch-main">
 		<section class="ch-hero">
@@ -33,7 +32,7 @@
 				</a>
 				{% else %}
 				<p class="ch-note">{{ _("Signed in as {0}").format(full_name) | e }}</p>
-				<a class="ch-btn" href="/helpdesk">{{ _("Go to my requests") }}</a>
+				<a class="ch-btn" href="/complaints">{{ _("Go to my requests") }}</a>
 				{% endif %}
 
 				<h3 class="ch-steps-title">{{ _("How it works") }}</h3>
