@@ -2,8 +2,10 @@
 import frappe
 from frappe import _
 from frappe.utils import now_datetime
+from helpdesk.utils import is_agent
 
 from afmco_care_profile.afmco_care_profile.agent import care_agent_session
+from afmco_care_profile.afmco_care_profile.profile import profile_enforced
 
 CLOSING_STATUSES = ("Closed", "Resolved")
 CLOSE_GUARD_FIELDS = (
@@ -40,15 +42,9 @@ def care_close_guard(doc):
     entering_close = doc.status in CLOSING_STATUSES and (
         not previous or previous.status not in CLOSING_STATUSES
     )
-    session_is_agent = bool(
-        ((not previous and raised_by) or entering_close) and care_agent_session()
-    )
+    session_is_agent = bool(entering_close and care_agent_session())
 
-    if (
-        not previous
-        and raised_by
-        and not (session_is_agent and session_user != raised_by)
-    ):
+    if not previous and raised_by and not (profile_enforced() and is_agent()):
         open_ticket = frappe.db.get_value(
             "HD Ticket",
             {"raised_by": raised_by, "status": ["not in", CLOSING_STATUSES]},
