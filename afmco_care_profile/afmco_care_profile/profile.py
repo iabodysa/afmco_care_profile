@@ -29,7 +29,7 @@ def profile_prefills():
 
 
 def care_profile_guard(ticket):
-    if not profile_enforced():
+    if not profile_prefills():
         return
     for fieldname in (*PROFILE_FIELDS, PROFILE_PHONE):
         ticket.set(
