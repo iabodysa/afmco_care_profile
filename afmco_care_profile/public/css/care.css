@@ -284,3 +284,26 @@ body.care-home {
 @media (min-width: 900px) {
 	.ch-main.ch-main--app { flex-direction: column; align-items: stretch; justify-content: flex-start; padding: 16px 32px 64px; }
 }
+
+.ch-btn--soft { margin-top: 14px; background: #FFFFFF; color: var(--ch-violet-deep); border: 1px solid var(--ch-line); }
+.ch-btn--soft:hover { background: var(--ch-ring); color: var(--ch-violet-deep); }
+
+.ch-form { display: grid; gap: 14px; }
+.ch-field { display: grid; gap: 6px; margin: 0; color: var(--ch-ink); font-size: 14px; font-weight: 700; }
+.ch-field input {
+	width: 100%;
+	min-height: 48px;
+	padding: 0 14px;
+	border: 1px solid var(--ch-line);
+	border-radius: 12px;
+	background: #FFFFFF;
+	color: var(--ch-ink);
+	font: inherit;
+	font-size: 16px;
+	font-weight: 400;
+}
+.ch-field input[dir="ltr"] { text-align: start; }
+.ch-field input:focus-visible { outline: 3px solid var(--ch-line); outline-offset: 1px; border-color: var(--ch-violet); }
+.ch-form .ch-btn { width: 100%; border: 0; cursor: pointer; }
+.ch-saved { margin: 0; padding: 12px 14px; border-radius: 12px; background: #E3F5EA; color: #1E6B3A; font-size: 14px; font-weight: 700; }
+.ch-back { display: inline-block; margin-top: 18px; color: var(--ch-violet-deep); font-size: 14px; font-weight: 700; }
