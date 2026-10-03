@@ -1,0 +1,44 @@
+{% extends "templates/base.html" %}
+
+{% block title %}{{ _("My contact details") }} · AFMCO{% endblock %}
+
+{% block head_include %}{{ super() }}<link rel="stylesheet" href="/assets/afmco_care_profile/css/care.css">{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="ch">
+	{% include "afmco_care_profile/templates/includes/care_bar.html" %}
+
+	<main class="ch-main ch-main--app">
+		<section class="ch-card ch-app" aria-labelledby="ch-app-title">
+			<div class="ch-card-head">
+				<h1 id="ch-app-title">{{ _("My contact details") }}</h1>
+			</div>
+			<div class="ch-card-body">
+				{% if has_contact %}
+				<p class="ch-note">{{ _("Keep these details current so the care team can reach you. Your next complaint is filled from them.") }}</p>
+				<form class="ch-form" id="ch-details" novalidate>
+					{% for field in fields %}
+					<label class="ch-field">
+						<span>{{ field.label | e }}</span>
+						<input name="{{ field.fieldname }}" value="{{ field.value | e }}" required
+							{%- if field.fieldname in ("iqama_number", "phone_number", "working_id") %} inputmode="numeric" dir="ltr"{% endif %}
+							{%- if field.fieldname in ("iqama_number", "phone_number") %} maxlength="10"{% endif %}
+							{%- if field.fieldname == "phone_number" %} type="tel" autocomplete="tel"{% else %} type="text"{% endif %}>
+					</label>
+					{% endfor %}
+					<button class="ch-btn" type="submit">{{ _("Save") }}</button>
+					<p class="ch-saved" role="status" hidden>{{ _("Your details are saved.") }}</p>
+				</form>
+				{% else %}
+				<p class="ch-empty">{{ _("Your account has no contact record. Ask the care team to add one.") }}</p>
+				{% endif %}
+				<a class="ch-back" href="/complaints">{{ _("Back to my complaints") }}</a>
+			</div>
+		</section>
+	</main>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
