@@ -32,7 +32,7 @@ def profile_contact():
     return frappe.new_doc("HD Ticket").get_session_contact()
 
 
-def profile_clean(values):
+def profile_clean(values, missing_message):
     values = {
         fieldname: (values.get(fieldname) or "").strip().translate(PROFILE_DIGITS)
         for fieldname in PROFILE_REQUIRED
@@ -41,7 +41,7 @@ def profile_clean(values):
     missing = [fieldname for fieldname in PROFILE_REQUIRED if not values[fieldname]]
     if missing:
         labels = ", ".join(_(meta.get_label(fieldname)) for fieldname in missing)
-        frappe.throw(_("Enter {0} before you submit the ticket.").format(labels))
+        frappe.throw(missing_message.format(labels))
     if not PROFILE_IQAMA.fullmatch(values["iqama_number"]):
         frappe.throw(
             _("{0} must be 10 digits starting with 1 or 2.").format(
@@ -80,7 +80,7 @@ def profile_apply(contact, values):
 def care_profile_guard(ticket):
     if not profile_prefills():
         return
-    ticket.update(profile_clean(ticket))
+    ticket.update(profile_clean(ticket, _("Enter {0} before you submit the ticket.")))
 
 
 def care_profile_sync(ticket):
