@@ -15,6 +15,10 @@ body[data-path="login"] .btn-login:not(.btn-login-option), body[data-path="login
 body[data-path="login"] .btn-login:not(.btn-login-option):hover, body[data-path="login"] .btn-primary:hover { background: var(--lg-hover) !important; border-color: var(--lg-hover) !important; }
 body[data-path="login"] .btn-login:focus-visible, body[data-path="login"] .btn-primary:focus-visible { outline: 3px solid var(--lg-ring); outline-offset: 2px; }
 body[data-path="login"] .page-card a:not(.btn), body[data-path="login"] .forgot-password-message a { color: var(--lg-link); text-decoration-color: var(--lg-line); }
+body[data-path="login"] .btn-login-option.btn-google { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; background: #FFFFFF; color: var(--lg-ink); border: 1px solid var(--lg-line); border-radius: 10px; font-size: 15px; font-weight: 600; }
+body[data-path="login"] .btn-login-option.btn-google:hover { background: #FFFFFF; border-color: var(--lg-accent); }
+body[data-path="login"] .btn-login-option.btn-google:focus-visible { outline: 3px solid var(--lg-ring); outline-offset: 2px; }
+body[data-path="login"] .btn-login-option.btn-google img { width: 20px; height: 20px; }
 @media (max-width: 576px) {
   body[data-path="login"] .page-content-wrapper > main.container { padding: 32px 16px; }
   body[data-path="login"] .for-login { margin-inline: 0; }
