@@ -21,7 +21,10 @@ add_to_apps_screen = [
 ]
 
 extend_doctype_class = {
-    "HD Ticket": ["afmco_care_profile.afmco_care_profile.hd_ticket.CareHDTicket"],
+    "HD Ticket": [
+        "afmco_care_profile.afmco_care_profile.hd_ticket.CareHDTicket",
+        "afmco_care_profile.afmco_care_profile.portal_filters.CarePortalFilters",
+    ],
 }
 
 after_sync = ["afmco_care_profile.afmco_care_profile.install.reconcile"]
