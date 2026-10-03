@@ -10,6 +10,8 @@ required_apps = ["helpdesk"]
 
 web_include_css = "/assets/afmco_care_profile/css/login.css"
 
+home_page = "care"
+
 add_to_apps_screen = [
     {
         "name": app_name,
